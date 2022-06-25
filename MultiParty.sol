@@ -56,12 +56,8 @@ contract Multiparty {
         _;
     }
 
-    constructor(address[] memory _owners, uint _percentageRequired) {
+    constructor(address[] memory _owners) {
         require(_owners.length > 0, "owners required");
-        require(
-            _percentageRequired > 0, 
-            "invalid percentage input"
-        );
 
         for (uint i = 0; i < _owners.length; i++) {
             address owner = _owners[i];
@@ -72,8 +68,6 @@ contract Multiparty {
             isOwner[owner] = true;
             owners.push(owner);
         }
-
-        percentageRequired = _percentageRequired;
         admin = msg.sender;
     }
 
